@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Number System Converter</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #ffb6c1, #ffd1dc);
+        }
+
+        .container {
+            width: 430px;
+            margin: 60px auto;
+            background: #fff0f5;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 12px 30px rgba(255, 105, 180, 0.45);
+        }
+
+        .greeting {
+            text-align: center;
+            font-size: 22px;
+            color: #c2185b;
+            margin-bottom: 10px;
+        }
+
+        .emoji {
+            font-size: 40px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #ad1457;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+            color: #880e4f;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border-radius: 8px;
+            border: 1px solid #f48fb1;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 22px;
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #ff1493, #ad1457);
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #ff80ab;
+        }
+
+        .result {
+            margin-top: 22px;
+            padding: 14px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #6a1b9a;
+            background: #fce4ec;
+            border-radius: 10px;
+            box-shadow: inset 0 0 10px #f8bbd0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="greeting">
+        <span class="emoji"></span>
+         
+         😊
+    </div>
+
+    <h2>Number System Converter</h2>
+
+    <label>Source Number System</label>
+    <select id="source">
+        <option value="2">Binary</option>
+        <option value="8">Octal</option>
+        <option value="10">Decimal</option>
+        <option value="16">Hexadecimal</option>
+    </select>
+
+    <label>Target Number System</label>
+    <select id="target">
+        <option value="2">Binary</option>
+        <option value="8">Octal</option>
+        <option value="10">Decimal</option>
+        <option value="16">Hexadecimal</option>
+    </select>
+
+    <label>Enter Number</label>
+    <input type="text" id="number" placeholder="Enter your number here">
+
+    <button onclick="convert()">✨ Convert ✨</button>
+
+    <div class="result" id="result">
+        Your result will appear here 
+    </div>
+</div>
+
+<script>
+    function convert() {
+        var number = document.getElementById("number").value.trim();
+        var sourceBase = parseInt(document.getElementById("source").value);
+        var targetBase = parseInt(document.getElementById("target").value);
+        var resultBox = document.getElementById("result");
+
+        if (number === "") {
+            resultBox.innerHTML = "⚠ Please enter a number";
+            return;
+        }
+
+        var decimalValue = parseInt(number, sourceBase);
+
+        if (isNaN(decimalValue)) {
+            resultBox.innerHTML = "❌ Invalid number for selected system";
+            return;
+        }
+
+        var result = decimalValue.toString(targetBase).toUpperCase();
+        resultBox.innerHTML = "✅ Converted Result: " + result;
+    }
+</script>
+
+</body>
+</html>
